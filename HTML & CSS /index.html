@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call a Bike - Dashboard</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" crossorigin=""/>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- MarkerCluster -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+</head>
+<body>
+    <!-- Header mit Logo -->
+    <header>
+        <img src="https://imgcdn.stablediffusionweb.com/2024/9/16/2b5394fc-60b7-4797-9928-1988612cbef0.jpg" alt="Call a Bike Logo">
+        <h1>Call a Bike - Fahrradstationen Dashboard</h1>
+    </header>
+
+    <main>
+       <!-- Filter für Visualisierung 1 -->
+       <section class="filters">
+        <h2>Filter</h2>
+        <h3>Stationen</h3>
+
+        <div>
+            <h3>Buchungsart</h3></div>
+            <input type="checkbox" id="filter-start" value="start"> <label for="filter-start">Startstationen</label><br>
+            <input type="checkbox" id="filter-end" value="end"> <label for="filter-end">Endstationen</label><br>
+        </div>
+        <div class="filters">
+            <h3>Buchungsportal</h3>
+            <label for="portal-ivr"><input type="checkbox" id="portal-ivr" value="IVR"> IVR</label><br>
+            <label for="portal-iphone-cab"><input type="checkbox" id="portal-iphone-cab" value="iPhone CAB"> iPhone CAB</label><br>
+            <label for="portal-android-cab"><input type="checkbox" id="portal-android-cab" value="Android CAB"> Android CAB</label><br>
+            <label for="portal-windows"><input type="checkbox" id="portal-windows" value="Windows"> Windows</label><br>
+            <label for="portal-lidl-bike"><input type="checkbox" id="portal-lidl-bike" value="LIDL-BIKE"> LIDL-BIKE</label><br>
+            <label for="portal-techniker-f5"><input type="checkbox" id="portal-techniker-f5" value="Techniker F_5 (-67212-)"> Techniker F_5 (-67212-)</label><br>
+            <label for="portal-iphone-srh"><input type="checkbox" id="portal-iphone-srh" value="iPhone SRH"> iPhone SRH</label><br>
+            <label for="portal-android-srh"><input type="checkbox" id="portal-android-srh" value="Android SRH"> Android SRH</label><br>
+            <label for="portal-iphone-kon"><input type="checkbox" id="portal-iphone-kon" value="iPhone KON"> iPhone KON</label><br>
+        </div>
+        
+    </section>
+
+        <!-- Filter für Wochentags-Trends -->
+        <section class="filters">
+            <h3>Wochentags-Trends</h3>
+            <div>
+                <label for="filter-monday"><input type="checkbox" id="filter-monday"> Montag</label><br>
+                <label for="filter-tuesday"><input type="checkbox" id="filter-tuesday"> Dienstag</label><br>
+                <label for="filter-wednesday"><input type="checkbox" id="filter-wednesday"> Mittwoch</label><br>
+                <label for="filter-thursday"><input type="checkbox" id="filter-thursday"> Donnerstag</label><br>
+                <label for="filter-friday"><input type="checkbox" id="filter-friday"> Freitag</label><br>
+                <label for="filter-saturday"><input type="checkbox" id="filter-saturday"> Samstag</label><br>
+                <label for="filter-sunday"><input type="checkbox" id="filter-sunday"> Sonntag</label><br>
+            </div>
+            <button onclick="applyFilters()">Filter anwenden</button>
+        </section>
+
+    <!-- Adresssuche -->
+    <section class="filters">
+        <h2>Adresse suchen</h2>
+        <div>
+            <input type="text" id="address-input" placeholder="Adresse eingeben...">
+            <button onclick="searchAddress()">Suchen</button>
+        </div>
+    </section>
+
+    <!-- Kartenbereich -->
+    <section>
+        <h2>Standorte auf der Karte</h2>
+        <div id="map"></div>
+    </section>
+
+    <!-- Statistiken -->
+    <section>
+        <h2>Statistiken</h2>
+        <canvas id="statsChart" width="400" height="200"></canvas>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer>
+    <p>© 2024 Call a Bike</p>
+</footer>
+
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="map.js"></script>
+</body>
+</html>
